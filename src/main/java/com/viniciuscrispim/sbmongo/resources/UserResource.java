@@ -1,6 +1,7 @@
 package com.viniciuscrispim.sbmongo.resources;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viniciuscrispim.sbmongo.domain.User;
+import com.viniciuscrispim.sbmongo.dto.UserDTO;
 import com.viniciuscrispim.sbmongo.services.UserService;
 
 @RestController
@@ -20,9 +22,14 @@ public class UserResource {
 	
 	@RequestMapping(method =RequestMethod.GET)
 	// ou @GetMapping
-	public ResponseEntity<List<User>> findAll(){
+	public ResponseEntity<List<UserDTO>> findAll(){
 		List<User> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		//convertendo list de user para listDTO com instrução lambida
+		//transforma list original para stream que é uma coleção compativel
+		//com exprssão lambida, depois faz um map passando os users e retornando um userdto
+		//por fim converte o stream pra lista com o collect
+		List<UserDTO> listDTO = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 }
