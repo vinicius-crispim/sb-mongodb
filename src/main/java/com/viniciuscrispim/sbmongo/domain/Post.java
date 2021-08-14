@@ -22,7 +22,7 @@ public class Post implements Serializable {
 	
 	private Date date;
 	
-	private String tittle;
+	private String title;
 	
 	private String body;
 
@@ -30,10 +30,10 @@ public class Post implements Serializable {
 	
 	private List<CommentDTO> comments = new ArrayList<>();
 	
-	public Post(String id, Date date, String tittle, String body,AuthorDTO author) {
+	public Post(String id, Date date, String title, String body,AuthorDTO author) {
 		this.id = id;
 		this.date = date;
-		this.tittle = tittle;
+		this.title = title;
 		this.body = body;
 		this.author = author;
 	}
@@ -56,12 +56,12 @@ public class Post implements Serializable {
 		this.date = date;
 	}
 
-	public String getTittle() {
-		return tittle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
+	public void setTittle(String title) {
+		this.title = title;
 	}
 
 	public String getBody() {
