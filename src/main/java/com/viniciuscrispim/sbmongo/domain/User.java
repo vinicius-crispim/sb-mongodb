@@ -12,11 +12,11 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	public String id;
+	private String id;
 
-	public String name;
+	private String name;
 
-	public String email;
+	private String email;
 
 	public User(String id, String name, String email) {
 		this.id = id;

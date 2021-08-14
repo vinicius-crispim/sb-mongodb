@@ -1,13 +1,13 @@
 package com.viniciuscrispim.sbmongo.domain;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.viniciuscrispim.sbmongo.dto.AuthorDTO;
 
 @Document
 public class Post implements Serializable {
@@ -15,17 +15,17 @@ public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	public String id;
+	private String id;
 	
-	public Date date;
+	private Date date;
 	
-	public String tittle;
+	private String tittle;
 	
-	public String body;
+	private String body;
 
-	public User author;
+	private AuthorDTO author;
 	
-	public Post(String id, Date date, String tittle, String body,User author) {
+	public Post(String id, Date date, String tittle, String body,AuthorDTO author) {
 		this.id = id;
 		this.date = date;
 		this.tittle = tittle;
@@ -63,11 +63,11 @@ public class Post implements Serializable {
 		return body;
 	}
 
-	public User getAuthor() {
+	public AuthorDTO getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
 
