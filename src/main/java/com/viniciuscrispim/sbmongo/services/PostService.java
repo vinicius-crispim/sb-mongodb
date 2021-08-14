@@ -26,8 +26,8 @@ public class PostService {
 		return u.orElseThrow(() -> new ObjectNotFoundException("Post não encontrado"));
 	}
 	
-	public Post savePost(Post u) {
-		return repository.insert(u);
+	public Post savePost(Post post) {
+		return repository.insert(post);
 	}
 	
 	public void deletePost(String id) {

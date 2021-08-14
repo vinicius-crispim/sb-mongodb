@@ -1,13 +1,16 @@
 package com.viniciuscrispim.sbmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.viniciuscrispim.sbmongo.dto.AuthorDTO;
+import com.viniciuscrispim.sbmongo.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -24,6 +27,8 @@ public class Post implements Serializable {
 	private String body;
 
 	private AuthorDTO author;
+	
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public Post(String id, Date date, String tittle, String body,AuthorDTO author) {
 		this.id = id;
@@ -73,6 +78,10 @@ public class Post implements Serializable {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public List<CommentDTO> getComments() {
+		return comments;
 	}
 
 	@Override
