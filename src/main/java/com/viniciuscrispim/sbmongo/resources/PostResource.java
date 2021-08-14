@@ -1,6 +1,7 @@
 package com.viniciuscrispim.sbmongo.resources;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,18 @@ public class PostResource {
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text",defaultValue = "") String text){
 		text = URL.decodeParam(text);
 		List<Post> list = service.findByTitle(text);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(value = "/fullsearch", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findByTitle(
+			@RequestParam(value="text",defaultValue = "") String text,
+			@RequestParam(value="min",defaultValue = "") String min,
+			@RequestParam(value="max",defaultValue = "") String max){
+		text = URL.decodeParam(text);
+		Date datemin = URL.convertDate(min, new Date(0L));
+		Date datemax = URL.convertDate(max, new Date());
+		List<Post> list = service.fullsearch(text, datemin, datemax);
 		return ResponseEntity.ok().body(list);
 	}
 	
